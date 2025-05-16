@@ -18,3 +18,18 @@ export const Category = styled.button<Props>`
   font-weight: 600;
 
 `
+
+export const Pagination = styled.button<Props>`
+  all: unset;
+
+  width: 32px;
+  height: 32px;
+  text-align: center;
+
+  padding: 4px;
+  font-size: 16px;
+  color: ${(props) => props.active === true ? '#ffa585' : '#737380'};
+  background-color: ${(props) => props.active === true ? '#F5F5FA' : '#E9E9F0'};
+  border: 1px solid ${(props) => props.active === true ? '#ffa585' : 'transparent'};
+  border-radius: 8px;
+`

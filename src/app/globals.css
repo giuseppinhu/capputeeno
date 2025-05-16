@@ -5,11 +5,15 @@
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
 }
 
 body {
   background-color: #f0f0f5;
+}
+
+main {
+  padding-top: 32px;
 }
