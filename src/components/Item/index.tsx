@@ -3,6 +3,9 @@ import Image from "next/image";
 import mockup from "../../../public/mockup.png";
 import * as S from "./style";
 
+
+
+
 const Item = () => (
   <div>
     <S.Card>

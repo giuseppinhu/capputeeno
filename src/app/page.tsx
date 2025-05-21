@@ -16,7 +16,7 @@ const Home = () => (
       <Button category="category" title="Camisas" />
       <Select />
       <div className={styles.pagination}>
-         <Button category="pagination" title="1" active/>
+         <Button category="pagination" title="1" active={true} />
          <Button category="pagination" title="2"/>
          <Button category="pagination" title="3"/>
          <Button category="pagination" title="4"/>
