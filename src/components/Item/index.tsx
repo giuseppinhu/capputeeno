@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import mockup from "../../../public/mockup.png";
-import * as S from "./style";
+import * as S from './style'
+import { formatPrices } from '@/utils'
 
 type Props = {
   name: string
@@ -11,17 +11,23 @@ type Props = {
   price: number
 }
 
-const Item = ({name, image_url, price}: Props) => (
-  <div>
+const Item = ({ name, image_url, price }: Props) => {
+  return <div>
     <S.Card>
-      <Image className="border-radius" src={image_url} width={250} height={300} alt="Image do produto" />
+      <Image
+        className="border-radius"
+        src={image_url}
+        width={250}
+        height={300}
+        alt="Image do produto"
+      />
       <div className="card-body">
         <S.Title>{name}</S.Title>
         <hr />
-        <S.Price>{price}</S.Price>
+        <S.Price>{formatPrices(price)}</S.Price>
       </div>
     </S.Card>
   </div>
-)
+}
 
 export default Item

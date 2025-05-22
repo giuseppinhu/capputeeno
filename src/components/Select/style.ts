@@ -15,8 +15,8 @@ export const SelectStyle = styled.select`
     cursor: pointer;
 
     &:hover {
-     background-color: transparent;
+      background-color: transparent;
       box-shadow: none;
-  }
+    }
   }
 `

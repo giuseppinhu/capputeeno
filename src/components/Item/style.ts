@@ -7,17 +7,18 @@ export const Card = styled.div`
   height: 390px;
   width: 100%;
 
-  .border-radius{
+  .border-radius {
     border-radius: 8px 8px 0 0;
-    }
+    object-fit: cover;
+  }
 
-    .card-body{
-      padding: 8px 12px;
-      }
+  .card-body {
+    padding: 8px 12px;
+  }
 
   hr {
     height: 1px;
-    background-color: #DCE2E5;
+    background-color: #dce2e5;
     opacity: 20%;
     margin: 8px 0;
   }
@@ -26,7 +27,7 @@ export const Card = styled.div`
 export const Title = styled.h4`
   font-size: 16px;
   font-weight: 300;
-  color: #41414D;
+  color: #41414d;
 `
 
 export const Price = styled.span`
