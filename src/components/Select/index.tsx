@@ -2,7 +2,7 @@ import { SelectStyle } from './style'
 
 const Select = () => (
   <SelectStyle>
-    <option value="order" disabled selected>
+    <option value="order" disabled selected defaultValue="order" >
       Organize por
     </option>
     <option value="new">Novidades</option>

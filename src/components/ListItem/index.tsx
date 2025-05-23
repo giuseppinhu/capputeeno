@@ -10,7 +10,7 @@ type Props = {
 const ListItem = ({ currentPage }: Props) => {
   const [products, setProducts] = useState<Product[]>([])
 
-  const allPages = [] 
+  const allPages = []
   const productsPerPage = 12
 
 
@@ -30,7 +30,7 @@ const ListItem = ({ currentPage }: Props) => {
                   price_in_cents,
                   sales,
                   created_at
-            }  
+            }
           }
         `
       })
@@ -44,7 +44,7 @@ const ListItem = ({ currentPage }: Props) => {
       })
   }, [])
 
-  for (var i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     const start = i * productsPerPage
     const end = start + productsPerPage
 

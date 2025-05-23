@@ -5,6 +5,7 @@ export type Props = {
   title: string
   active?: boolean
   onClick?: () => void
+  id?: number
 }
 
 const Button = ({ category, title, active, onClick }: Props) => {
