@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 type Props = {
-  active: boolean | undefined
+  active: boolean | void
+  category?: 'mugs' | 'all' | 'tshirt' 
 }
 
 export const Category = styled.button<Props>`
