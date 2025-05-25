@@ -2,19 +2,20 @@ import { useEffect, useState } from 'react'
 
 import Item from '../Item'
 import { Container } from './style'
+import { convertToTimeStamp } from '@/utils'
 
 type Props = {
   currentPage: number
   category: string
+  option: string
 }
 
-const ListItem = ({ currentPage, category }: Props) => {
+const ListItem = ({ currentPage, category, option}: Props) => {
   const [products, setProducts] = useState<Product[]>([])
 
   const allPages = []
   const filtredPage = []
   const productsPerPage = 12
-
 
   useEffect(() => {
     fetch('http://localhost:3333/graphql', {
@@ -44,12 +45,12 @@ const ListItem = ({ currentPage, category }: Props) => {
       .catch((error) => {
         console.error('Erro:', error)
       })
-    }, [])
-    
+  }, [])
+  
+  
   const filtro = products.filter(p => 
     category === 'mugs' ? p.category === 'mugs' : p.category === 't-shirts'
-  );
-
+  )
     
   for (let i = 0; i < 5; i++) {
     const start = i * productsPerPage
@@ -59,7 +60,27 @@ const ListItem = ({ currentPage, category }: Props) => {
     filtredPage[i] = filtro.slice(start, end)
   }
 
-  console.log(filtredPage)
+
+  const selectOptions = (option: string) => {
+    switch (option) {
+      case 'new': 
+        console.log('morango')
+        break
+      case 'pricemin':
+        products.sort((a,b) => a.price_in_cents - b.price_in_cents)
+        break
+      case 'pricemax':
+        const teste1 = products.sort((a,b) =>  b.price_in_cents - a.price_in_cents)
+          break
+      case 'moresale':
+        products.sort((a,b) =>  b.sales - a.sales)
+        break
+      default:
+        break
+    }
+  }
+
+  selectOptions(option)
 
   return (
     <Container>

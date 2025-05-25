@@ -6,6 +6,7 @@ interface Product {
   image_url: string
   price_in_cents: number
   sales: number
+  created_at: string
 }
 
 type GraphQL = {

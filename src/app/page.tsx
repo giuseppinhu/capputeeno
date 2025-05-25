@@ -12,6 +12,7 @@ import styles from './page.module.css'
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [categoryState, setCategory] = useState('all') 
+  const [valueSelect, setValueSelect] = useState('')
 
   const returnPage = () => {
     return currentPage <= 0 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)
@@ -33,7 +34,6 @@ const Home = () => {
   return categoryState == category ? true : false
  }
 
-
  return (
   <>
     <Header />
@@ -41,7 +41,7 @@ const Home = () => {
       <Button type="category" title="Todos as Categorias" active={categoryButton('all')} onClick={() => setCategory('all')} />
       <Button type="category" title="Canecas" active={categoryButton('mugs')} onClick={() => setCategory('mugs')} />
       <Button type="category" title="Camisas" active={categoryButton('tshirt')} onClick={() => setCategory('tshirt')} />
-      <Select />
+      <Select valueSelect={valueSelect} setValueSelect={setValueSelect} />
       <div className={styles.pagination}>
         <Button type="pagination" title="1" active={paginationButton(0)} onClick={() => actuallyPage(0)}/>
         <Button type="pagination" title="2" active={paginationButton(1)} onClick={() => actuallyPage(1)}/>
@@ -51,7 +51,7 @@ const Home = () => {
         <Button type="pagination" title="<" onClick={() => returnPage()}/>
         <Button type="pagination" title=">" onClick={() => nextPage()}/>
       </div>
-      <ListItem category={categoryState} currentPage={currentPage}/>
+      <ListItem category={categoryState} currentPage={currentPage} option={valueSelect} />
     </main>
   </>
 )
