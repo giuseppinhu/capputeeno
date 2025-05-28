@@ -11,50 +11,98 @@ import styles from './page.module.css'
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(0)
-  const [categoryState, setCategory] = useState('all') 
+  const [categoryState, setCategory] = useState('all')
   const [valueSelect, setValueSelect] = useState('')
 
   const returnPage = () => {
-    return currentPage <= 0 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)
+    return currentPage <= 0
+      ? setCurrentPage(currentPage)
+      : setCurrentPage(currentPage - 1)
   }
 
- const nextPage = () => {
-    return currentPage >= 4 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)
- }
+  const nextPage = () => {
+    return currentPage >= 4
+      ? setCurrentPage(currentPage)
+      : setCurrentPage(currentPage + 1)
+  }
 
- const actuallyPage = (page: number) => {
-   setCurrentPage(page)
- }
+  const actuallyPage = (page: number) => {
+    setCurrentPage(page)
+  }
 
- const paginationButton = (page: number) => {
-  return currentPage == page ? true : false
- }
+  const paginationButton = (page: number) => {
+    return currentPage == page ? true : false
+  }
 
   const categoryButton = (category: string) => {
-  return categoryState == category ? true : false
- }
+    return categoryState == category ? true : false
+  }
 
- return (
-  <>
-    <Header />
-    <main className="container">
-      <Button type="category" title="Todos as Categorias" active={categoryButton('all')} onClick={() => setCategory('all')} />
-      <Button type="category" title="Canecas" active={categoryButton('mugs')} onClick={() => setCategory('mugs')} />
-      <Button type="category" title="Camisas" active={categoryButton('tshirt')} onClick={() => setCategory('tshirt')} />
-      <Select valueSelect={valueSelect} setValueSelect={setValueSelect} />
-      <div className={styles.pagination}>
-        <Button type="pagination" title="1" active={paginationButton(0)} onClick={() => actuallyPage(0)}/>
-        <Button type="pagination" title="2" active={paginationButton(1)} onClick={() => actuallyPage(1)}/>
-        <Button type="pagination" title="3" active={paginationButton(2)} onClick={() => actuallyPage(2)}/>
-        <Button type="pagination" title="4" active={paginationButton(3)} onClick={() => actuallyPage(3)}/>
-        <Button type="pagination" title="5" active={paginationButton(4)} onClick={() => actuallyPage(4)}/>
-        <Button type="pagination" title="<" onClick={() => returnPage()}/>
-        <Button type="pagination" title=">" onClick={() => nextPage()}/>
-      </div>
-      <ListItem category={categoryState} currentPage={currentPage} option={valueSelect} />
-    </main>
-  </>
-)
+  return (
+    <>
+      <Header />
+      <main className="container">
+        <Button
+          type="category"
+          title="Todos as Categorias"
+          active={categoryButton('all')}
+          onClick={() => setCategory('all')}
+        />
+        <Button
+          type="category"
+          title="Canecas"
+          active={categoryButton('mugs')}
+          onClick={() => setCategory('mugs')}
+        />
+        <Button
+          type="category"
+          title="Camisas"
+          active={categoryButton('t-shirts')}
+          onClick={() => setCategory('t-shirts')}
+        />
+        <Select valueSelect={valueSelect} setValueSelect={setValueSelect} />
+        <div className={styles.pagination}>
+          <Button
+            type="pagination"
+            title="1"
+            active={paginationButton(0)}
+            onClick={() => actuallyPage(0)}
+          />
+          <Button
+            type="pagination"
+            title="2"
+            active={paginationButton(1)}
+            onClick={() => actuallyPage(1)}
+          />
+          <Button
+            type="pagination"
+            title="3"
+            active={paginationButton(2)}
+            onClick={() => actuallyPage(2)}
+          />
+          <Button
+            type="pagination"
+            title="4"
+            active={paginationButton(3)}
+            onClick={() => actuallyPage(3)}
+          />
+          <Button
+            type="pagination"
+            title="5"
+            active={paginationButton(4)}
+            onClick={() => actuallyPage(4)}
+          />
+          <Button type="pagination" title="<" onClick={() => returnPage()} />
+          <Button type="pagination" title=">" onClick={() => nextPage()} />
+        </div>
+        <ListItem
+          category={categoryState}
+          currentPage={currentPage}
+          option={valueSelect}
+        />
+      </main>
+    </>
+  )
 }
 
 export default Home

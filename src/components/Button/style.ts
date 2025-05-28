@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 type Props = {
   active: boolean | void
-  category?: 'mugs' | 'all' | 'tshirt' 
+  category?: 'mugs' | 'all' | 't-shirts'
 }
 
 export const Category = styled.button<Props>`
@@ -20,16 +20,16 @@ export const Category = styled.button<Props>`
     ${(props) => (props.active === true ? '#ffa585' : 'none')};
   font-weight: 600;
   cursor: pointer;
-  `
-  
-  export const Pagination = styled.button<Props>`
+`
+
+export const Pagination = styled.button<Props>`
   all: unset;
   user-select: none;
-  
+
   width: 32px;
   height: 32px;
   text-align: center;
-  
+
   padding: 4px;
   font-size: 16px;
   color: ${(props) => (props.active === true ? '#ffa585' : '#737380')};
@@ -37,7 +37,6 @@ export const Category = styled.button<Props>`
     props.active === true ? '#F5F5FA' : '#E9E9F0'};
   border: 1px solid
     ${(props) => (props.active === true ? '#ffa585' : 'transparent')};
-    border-radius: 8px;
-    cursor: pointer;
+  border-radius: 8px;
+  cursor: pointer;
 `
-    
