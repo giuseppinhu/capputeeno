@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
+
 import Item from '../Item'
 import { Container } from './style'
 
@@ -6,41 +7,11 @@ type Props = {
   currentPage: number
   category: string
   option: string
+  products: Product[]
 }
 
-const ListItem = ({ currentPage, category, option }: Props) => {
-  const [products, setProducts] = useState<Product[]>([])
+const ListItem = ({ currentPage, category, option, products}: Props) => {
   const productsPerPage = 12
-
-  useEffect(() => {
-    fetch('http://localhost:3333/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query {
-            allProducts {
-              id,
-              name,
-              description,
-              category,
-              image_url,
-              price_in_cents,
-              sales,
-              created_at
-            }
-          }
-        `
-      })
-    })
-      .then((res) => res.json())
-      .then((result: GraphQL) => {
-        setProducts(result.data.allProducts)
-      })
-      .catch((error) => {
-        console.error('Erro:', error)
-      })
-  }, [])
 
   const isRecent = (createdAt: string) => {
     const now = Date.now()
@@ -94,6 +65,7 @@ const ListItem = ({ currentPage, category, option }: Props) => {
         currentProducts.map((product) => (
           <Item
             key={product.id}
+            id={product.id}
             name={product.name}
             image_url={product.image_url}
             price={product.price_in_cents}

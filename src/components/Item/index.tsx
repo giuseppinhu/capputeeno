@@ -2,19 +2,25 @@ import Image from 'next/image'
 
 import * as S from './style'
 import { formatPrices } from '@/utils'
+import { useRouter } from 'next/navigation'
 
 type Props = {
+  id: string  
   name: string
-  description: string
-  category: string
   image_url: string
   price: number
 }
 
-const Item = ({ name, image_url, price }: Props) => {
+const Item = ({ name, image_url, price, id }: Props) => {
+  const router = useRouter()
+  
+  const productDetail = () => {
+    router.push(`/produtos/${id}`)
+  }
+
   return (
     <div>
-      <S.Card>
+      <S.Card onClick={productDetail}>
         <Image
           className="border-radius"
           src={image_url}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Header from '@/components/Header'
 import Button from '@/components/Button'
@@ -10,10 +10,42 @@ import ListItem from '@/components/ListItem'
 import styles from './page.module.css'
 
 const Home = () => {
+  const [products, setProducts] = useState<Product[]>([])
+
   const [currentPage, setCurrentPage] = useState(0)
   const [categoryState, setCategory] = useState('all')
   const [valueSelect, setValueSelect] = useState('')
 
+  useEffect(() => {
+    fetch('http://localhost:3333/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query {
+            allProducts {
+              id,
+              name,
+              description,
+              category,
+              image_url,
+              price_in_cents,
+              sales,
+              created_at
+            }
+          }
+        `
+      })
+    })
+      .then((res) => res.json())
+      .then((result: GraphQL) => {
+        setProducts(result.data.allProducts)
+      })
+      .catch((error) => {
+        console.error('Erro:', error)
+      })
+  }, [])
+  
   const returnPage = () => {
     return currentPage <= 0
       ? setCurrentPage(currentPage)
@@ -99,6 +131,7 @@ const Home = () => {
           category={categoryState}
           currentPage={currentPage}
           option={valueSelect}
+          products={products}
         />
       </main>
     </>
