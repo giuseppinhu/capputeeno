@@ -8,6 +8,7 @@ import Header from '@/components/Header'
 import { formatPrices } from '@/utils'
 
 import * as S from './styles'
+import Link from 'next/link'
 
 type PageProps = {
   params: {
@@ -56,7 +57,8 @@ useEffect(() => {
     <>
       <Header />
       <div className="container">
-      <S.Return>
+        <Link href='/' style={{textDecoration: 'none'}}>
+          <span className='button-return'>
           <svg
             width="24"
             height="24"
@@ -87,7 +89,8 @@ useEffect(() => {
             />
           </svg>
           Voltar
-        </S.Return>
+          </span>
+        </Link>
         <S.Container>
           <Image
             alt="Image do Produto"

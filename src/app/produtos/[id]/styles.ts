@@ -1,18 +1,5 @@
 import styled from 'styled-components'
 
-export const Return = styled.span`
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    color: #617480;
-    margin: 24px 0;
-
-    svg {
-        margin-right: 4px;
-    }
-`
-
 export const Container = styled.div`
   display: flex;
 
