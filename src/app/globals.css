@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 .container {
@@ -29,4 +30,11 @@ main {
   svg {
       margin-right: 4px;
   }
+}
+
+hr {
+  height: 1px;
+  background-color: #dce2e5;
+  opacity: 20%;
+  margin: 8px 0;
 }

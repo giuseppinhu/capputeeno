@@ -15,13 +15,6 @@ export const Card = styled.div`
   .card-body {
     padding: 8px 12px;
   }
-
-  hr {
-    height: 1px;
-    background-color: #dce2e5;
-    opacity: 20%;
-    margin: 8px 0;
-  }
 `
 
 export const Title = styled.h4`
