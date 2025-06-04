@@ -4,8 +4,8 @@ export const Container = styled.div`
   display: flex;
 
   .content {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
 `
 
@@ -22,7 +22,7 @@ export const SubTitle = styled.h4`
 
 export const Quote = styled.h4`
   font-size: 12px;
-  color: #41414D;
+  color: #41414d;
   font-weight: 400;
   margin: 24px 0 58px 0;
 `
@@ -50,6 +50,7 @@ export const ButtonCart = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   svg {
     margin-right: 12px;

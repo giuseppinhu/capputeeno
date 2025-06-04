@@ -9,6 +9,7 @@ import { formatPrices } from '@/utils'
 
 import * as S from './styles'
 import Link from 'next/link'
+import { useCart } from '@/context/cart'
 
 type PageProps = {
   params: {
@@ -19,14 +20,15 @@ type PageProps = {
 const Details = ({ params }: PageProps) => {
   const [product, setProduct] = useState<Product | null>(null)
 
-  
-useEffect(() => {
-  const fetchProduct = async () => {
-    const res = await fetch('http://localhost:3333/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
+  const { addToCart } = useCart()
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: `
           query {
             Product(id: "${params.id}") {
                 id
@@ -38,18 +40,16 @@ useEffect(() => {
               }
           }
         `
+        })
       })
-    })
 
-    const json = await res.json()
-    setProduct(json.data.Product)
-  }
-
+      const json = await res.json()
+      setProduct(json.data.Product)
+    }
     fetchProduct()
-}, [params.id])
+  }, [params.id])
 
-
-  if(!product) {
+  if (!product) {
     return <h1>Carregando</h1>
   }
 
@@ -57,38 +57,38 @@ useEffect(() => {
     <>
       <Header />
       <div className="container">
-        <Link href='/' style={{textDecoration: 'none'}}>
-          <span className='button-return'>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18.3639 5.63604C21.8787 9.15076 21.8787 14.8492 18.3639 18.3639C14.8492 21.8787 9.15074 21.8787 5.63604 18.3639C2.12132 14.8492 2.12132 9.15074 5.63604 5.63604C9.15076 2.12132 14.8492 2.12132 18.3639 5.63604"
-              stroke="#617480"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M10 13L7.5 10.5L10 8"
-              stroke="#617480"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M11.5 16H12.75C14.269 16 15.5 14.769 15.5 13.25V13.25C15.5 11.731 14.269 10.5 12.75 10.5H11.5H7.5"
-              stroke="#617480"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          Voltar
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <span className="button-return">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.3639 5.63604C21.8787 9.15076 21.8787 14.8492 18.3639 18.3639C14.8492 21.8787 9.15074 21.8787 5.63604 18.3639C2.12132 14.8492 2.12132 9.15074 5.63604 5.63604C9.15076 2.12132 14.8492 2.12132 18.3639 5.63604"
+                stroke="#617480"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 13L7.5 10.5L10 8"
+                stroke="#617480"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M11.5 16H12.75C14.269 16 15.5 14.769 15.5 13.25V13.25C15.5 11.731 14.269 10.5 12.75 10.5H11.5H7.5"
+                stroke="#617480"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Voltar
           </span>
         </Link>
         <S.Container>
@@ -97,9 +97,13 @@ useEffect(() => {
             src={product.image_url}
             width={640}
             height={580}
-            style={{ borderRadius: '4px', display: 'block', marginRight: '32px' }}
+            style={{
+              borderRadius: '4px',
+              display: 'block',
+              marginRight: '32px'
+            }}
           />
-          <div className='content'>
+          <div className="content">
             <span>Caneca</span>
             <S.Title>{product.name}</S.Title>
             <S.Price>{formatPrices(product.price_in_cents)}</S.Price>
@@ -110,11 +114,19 @@ useEffect(() => {
             </S.Quote>
 
             <S.SubTitle>DESCRIÇÃO</S.SubTitle>
-            <S.Description>
-              {product.description}
-            </S.Description>
-            
-            <S.ButtonCart>
+            <S.Description>{product.description}</S.Description>
+
+            <S.ButtonCart
+              onClick={() =>
+                addToCart({
+                  id: params.id,
+                  name: product.name,
+                  description: product.description,
+                  image_url: product.image_url,
+                  price: product.price_in_cents
+                })
+              }
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
