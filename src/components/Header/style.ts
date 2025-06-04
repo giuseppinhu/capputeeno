@@ -21,6 +21,7 @@ export const HeaderStyle = styled.header`
 
   .bag {
     position: relative;
+    cursor: pointer;
 
     span {
       display: flex;

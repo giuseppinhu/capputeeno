@@ -48,6 +48,7 @@ export const Product = styled.div`
             position: absolute;
             right: 16px;
             top: 16px;
+            cursor: pointer;
         }
     }
 `

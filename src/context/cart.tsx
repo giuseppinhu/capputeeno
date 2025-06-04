@@ -1,8 +1,8 @@
 'use client'
 
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
-type CartItem = {
+export type CartItem = {
   id: string
   name: string
   image_url: string
@@ -27,9 +27,21 @@ type CartProviderProps = {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
+  useEffect(() => {
+      const stored = localStorage.getItem('cart');
+      if (stored) {
+        setCartItems(JSON.parse(stored));
+      }
+    }, []);
+
+    useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }, [cartItems]);
+
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === product.id)
+      
       if (exists) {
         return prev.map((item) =>
           item.id === product.id

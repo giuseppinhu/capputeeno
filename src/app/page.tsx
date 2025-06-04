@@ -40,7 +40,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((result: GraphQL) => {
         setProducts(result.data.allProducts)
-      })
+      })  
       .catch((error) => {
         console.error('Erro:', error)
       })

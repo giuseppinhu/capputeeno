@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
+  margin-bottom: 50px;
 
   .content {
     display: flex;
@@ -52,7 +53,16 @@ export const ButtonCart = styled.button`
   justify-content: center;
   cursor: pointer;
 
+  &:hover {
+    background-color:#497593;
+  }
+
   svg {
     margin-right: 12px;
   }
+`
+
+export const Category = styled.span`
+  font-size: 16px;
+  color: #41414D;
 `
