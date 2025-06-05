@@ -6,10 +6,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import Header from '@/components/Header'
+import { useCart } from '@/context/cart'
 import { formatPrices } from '@/utils'
 
 import * as S from './styles'
-import { useCart } from '@/context/cart'
 
 type PageProps = {
   params: {
@@ -48,9 +48,13 @@ const Details = ({ params }: PageProps) => {
     }
     fetchProduct()
   }, [params.id])
-  
+
   if (!product) {
-    return <h1>Carregando</h1>
+    return (
+      <div className="loaderContainer">
+        <div className="loader"></div>
+      </div>
+    )
   }
 
   const addItemCart = () => {
@@ -63,7 +67,7 @@ const Details = ({ params }: PageProps) => {
     })
     redirect('/cart')
   }
-  
+
   return (
     <>
       <Header />
@@ -115,7 +119,11 @@ const Details = ({ params }: PageProps) => {
             }}
           />
           <div className="content">
-            {product.category == 'mugs' ? (<S.Category>Caneca</S.Category>) : (<S.Category>Camiseta</S.Category>)}
+            {product.category == 'mugs' ? (
+              <S.Category>Caneca</S.Category>
+            ) : (
+              <S.Category>Camiseta</S.Category>
+            )}
             <S.Title>{product.name}</S.Title>
             <S.Price>{formatPrices(product.price_in_cents)}</S.Price>
             <S.Quote>
@@ -125,9 +133,7 @@ const Details = ({ params }: PageProps) => {
             <S.SubTitle>DESCRIÇÃO</S.SubTitle>
             <S.Description>{product.description}</S.Description>
 
-            <S.ButtonCart
-              onClick={() => addItemCart() }
-            >
+            <S.ButtonCart onClick={() => addItemCart()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

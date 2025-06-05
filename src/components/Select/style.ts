@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const SelectStyle = styled.select`
+  all: unset;
   height: 24px;
-  border: none;
   color: #737380;
   background: none;
   cursor: pointer;

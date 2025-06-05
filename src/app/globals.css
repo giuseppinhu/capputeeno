@@ -28,7 +28,7 @@ main {
   margin: 24px 0;
 
   svg {
-      margin-right: 4px;
+    margin-right: 4px;
   }
 }
 
@@ -37,4 +37,74 @@ hr {
   background-color: #dce2e5;
   opacity: 20%;
   margin: 8px 0;
+}
+
+.loader {
+  width: 40px;
+  height: 20px;
+  background: orange;
+  position: relative;
+  animation: l9-0 1.5s infinite linear;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  bottom: 100%;
+  width: 50%;
+  height: 100%;
+  animation: inherit;
+  animation-name: l9-1;
+}
+
+.loader:before {
+  left: 0;
+  transform-origin: bottom left;
+  --s: -1;
+}
+
+.loader:after {
+  right: 0;
+  transform-origin: bottom right;
+}
+
+@keyframes l9-0 {
+  0%,
+  10% {
+    transform: translateY(0%) scaleY(1);
+  }
+
+  49.99% {
+    transform: translateY(-50%) scaleY(1);
+  }
+
+  50% {
+    transform: translateY(-50%) scaleY(-1);
+  }
+
+  90%,
+  100% {
+    transform: translateY(-100%) scaleY(-1);
+  }
+}
+
+@keyframes l9-1 {
+  10%,
+  90% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(calc(var(--s, 1) * 180deg));
+  }
+}
+
+.loaderContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

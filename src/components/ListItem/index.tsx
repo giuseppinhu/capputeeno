@@ -10,7 +10,7 @@ type Props = {
   products: Product[]
 }
 
-const ListItem = ({ currentPage, category, option, products}: Props) => {
+const ListItem = ({ currentPage, category, option, products }: Props) => {
   const productsPerPage = 12
 
   const isRecent = (createdAt: string) => {

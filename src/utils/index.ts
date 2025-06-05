@@ -1,4 +1,4 @@
-import { CartItem } from "@/context/cart"
+import { CartItem } from '@/context/cart'
 
 export const formatPrices = (amount = 0) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -9,7 +9,7 @@ export const formatPrices = (amount = 0) => {
 
 export const totalPrice = (item: CartItem[]) => {
   return item.reduce((acc, current) => {
-    if(current.price) {
+    if (current.price) {
       return (acc += current.price)
     }
     return 0

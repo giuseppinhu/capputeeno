@@ -1,6 +1,12 @@
 'use client'
 
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 export type CartItem = {
   id: string
@@ -15,7 +21,6 @@ type CartContextType = {
   cartItems: CartItem[]
   addToCart: (product: Omit<CartItem, 'quantity'>) => void
   removeFromCart: (id: string) => void
-  clearCart: () => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -28,20 +33,20 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   useEffect(() => {
-      const stored = localStorage.getItem('cart');
-      if (stored) {
-        setCartItems(JSON.parse(stored));
-      }
-    }, []);
+    const stored = localStorage.getItem('cart')
+    if (stored) {
+      setCartItems(JSON.parse(stored))
+    }
+  }, [])
 
-    useEffect(() => {
-      localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems]);
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems))
+  }, [cartItems])
 
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === product.id)
-      
+
       if (exists) {
         return prev.map((item) =>
           item.id === product.id
@@ -57,14 +62,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id))
   }
 
-  const clearCart = () => {
-    setCartItems([])
-  }
-
   return (
-    <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart }}
-    >
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   )

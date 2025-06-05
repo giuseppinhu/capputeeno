@@ -5,7 +5,7 @@ import { formatPrices } from '@/utils'
 import { useRouter } from 'next/navigation'
 
 type Props = {
-  id: string  
+  id: string
   name: string
   image_url: string
   price: number
@@ -13,7 +13,7 @@ type Props = {
 
 const Item = ({ name, image_url, price, id }: Props) => {
   const router = useRouter()
-  
+
   const productDetail = () => {
     router.push(`/produtos/${id}`)
   }

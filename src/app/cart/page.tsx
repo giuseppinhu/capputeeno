@@ -10,7 +10,7 @@ import { useCart } from '@/context/cart'
 import { formatPrices, totalPrice } from '@/utils'
 
 const Cart = () => {
-  const { cartItems, clearCart, removeFromCart } = useCart()
+  const { cartItems, removeFromCart } = useCart()
   const priceProducts = formatPrices(totalPrice(cartItems))
   const totalPurchase = formatPrices(totalPrice(cartItems) + 4000)
 

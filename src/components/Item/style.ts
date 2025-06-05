@@ -6,6 +6,7 @@ export const Card = styled.div`
   max-width: 250px;
   height: 390px;
   width: 100%;
+  cursor: pointer;
 
   .border-radius {
     border-radius: 8px 8px 0 0;

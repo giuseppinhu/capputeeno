@@ -54,7 +54,7 @@ export const ButtonCart = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color:#497593;
+    background-color: #497593;
   }
 
   svg {
@@ -64,5 +64,5 @@ export const ButtonCart = styled.button`
 
 export const Category = styled.span`
   font-size: 16px;
-  color: #41414D;
+  color: #41414d;
 `
