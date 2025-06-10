@@ -1,5 +1,9 @@
 # Capputeeno - FrondEnd Challenge
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/10b89cd9-e933-4ef8-8af6-7d74131df10a" alt="Demonstração da aplicação" style="max-width: 100%; border-radius: 8px;" />
+</p>
+
 **Capputeeno** é um desafio da Rockseat que foi proposto a criação de um e-commerce usando TypeScript, GraphQL e React, ela permite organizar e navegar por produtos com filtro, paginação e ordenação.
 
 Clique [aqui](https://github.com/Rocketseat/frontend-challenge) para acessar o repositório do desafio 
